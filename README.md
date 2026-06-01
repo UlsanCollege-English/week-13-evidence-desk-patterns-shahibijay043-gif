@@ -2,199 +2,129 @@
 # Week 1 Homework: Evidence Desk Patterns
 
 ## Student Name
+Student Name
 
-Write your name here.
+Shahi Bijay
+Student ID: 2412083
 
-## Summary
+Summary
 
-Write 3–6 lines describing what this homework asks you to practice.
+In this homework, I practiced several important data structure patterns in Python. I used a dictionary for frequency counting in the evidence counter problem and a set to detect repeated suspect IDs efficiently. I also used a list as a stack to validate balanced evidence tags and a dictionary as a lookup table to find real names from aliases. While completing these problems, I learned how different data structures can solve specific tasks more effectively. This assignment also helped me improve my understanding of time and space complexity, testing, and handling edge cases.
 
-Example topics:
+Problem Notes
+1.  Evidence Counter
+Pattern
 
-- frequency counting with dictionaries
-- duplicate detection with sets
-- stack matching with lists
-- lookup tables with dictionaries
+Frequency Counting
 
-## How to Run Tests
+Data Structure
 
-From the repository root, run:
+Dictionary
 
-```bash
-pytest -q
-```
-
-To run one test file:
-
-```bash
-pytest -q tests/test_challenges.py
-```
-
-## Required Problems
-
-Complete these functions in `src/challenges.py`:
-
-1. `count_evidence`
-2. `first_repeated_id`
-3. `valid_tags`
-4. `lookup_alias`
-
-## Optional Challenges
-
-These are extra practice unless your instructor tells you otherwise:
-
-1. `process_reports`
-2. `largest_time_gap`
-
-Optional tests are skipped by default. To run them, remove the `@pytest.mark.skip(...)` line above the optional test you want to check.
-
----
-
-# Problem Notes
-
-## 1. Evidence Counter
-
-### Pattern
-
-Write the pattern name here.
-
-### Data Structure
-
-Write the data structure here.
-
-### Approach
-
-- Step 1:
-- Step 2:
-- Step 3:
-
-### Complexity
-
-- Time: `O(?)`
-- Space: `O(?)`
+Approach
+Step 1: Create an empty dictionary.
+Step 2: Loop through each evidence label.
+Step 3: Count how many times each label appears and store the result.
+Complexity
+Time: O(n)
+Space: O(n)
 
 Explain briefly:
 
-### Edge Cases Checked
+I visit each evidence item once and store counts in a dictionary. The dictionary may store up to all unique items.
 
-- [ ] Empty list
-- [ ] One item
-- [ ] Repeated items
-- [ ] Different labels
+Edge Cases Checked
+ Empty list
+ One item
+ Repeated items
+ Different labels
+2. Repeat Suspect ID
+Pattern
 
----
+Seen Before
 
-## 2. Repeat Suspect ID
+Data Structure
 
-### Pattern
+Set
 
-Write the pattern name here.
-
-### Data Structure
-
-Write the data structure here.
-
-### Approach
-
-- Step 1:
-- Step 2:
-- Step 3:
-
-### Complexity
-
-- Time: `O(?)`
-- Space: `O(?)`
+Approach
+Step 1: Create an empty set called seen.
+Step 2: Loop through each suspect ID.
+Step 3: Return the ID when it appears a second time.
+Complexity
+Time: O(n)
+Space: O(n)
 
 Explain briefly:
 
-### Edge Cases Checked
+The set provides fast membership checking, allowing repeated IDs to be detected efficiently.
 
-- [ ] Empty list
-- [ ] No repeated IDs
-- [ ] First two IDs match
-- [ ] Multiple repeated IDs
+Edge Cases Checked
+ Empty list
+ No repeated IDs
+ First two IDs match
+ Multiple repeated IDs
+3. Evidence Tag Validator
+Pattern
 
----
+Stack Matching
 
-## 3. Evidence Tag Validator
+Data Structure
 
-### Pattern
+List (used as a Stack)
 
-Write the pattern name here.
-
-### Data Structure
-
-Write the data structure here.
-
-### Approach
-
-- Step 1:
-- Step 2:
-- Step 3:
-
-### Complexity
-
-- Time: `O(?)`
-- Space: `O(?)`
+Approach
+Step 1: Create an empty stack.
+Step 2: Push opening brackets onto the stack.
+Step 3: Match closing brackets with the most recent opening bracket.
+Complexity
+Time: O(n)
+Space: O(n)
 
 Explain briefly:
 
-### Edge Cases Checked
+Each character is processed once. The stack stores unmatched opening brackets.
 
-- [ ] Empty string
-- [ ] Correctly nested tags
-- [ ] Mismatched tags
-- [ ] Closing tag before opening tag
-- [ ] Unclosed opening tag
-- [ ] Non-bracket characters
+Edge Cases Checked
+ Empty string
+ Correctly nested tags
+ Mismatched tags
+ Closing tag before opening tag
+ Unclosed opening tag
+ Non-bracket characters
+4. Alias Directory
+Pattern
 
----
+Lookup Table
 
-## 4. Alias Directory
+Data Structure
 
-### Pattern
+Dictionary
 
-Write the pattern name here.
-
-### Data Structure
-
-Write the data structure here.
-
-### Approach
-
-- Step 1:
-- Step 2:
-
-### Complexity
-
-- Time: `O(?)`
-- Space: `O(?)`
+Approach
+Step 1: Check whether the alias exists in the dictionary.
+Step 2: Return the corresponding real name or None.
+Complexity
+Time: O(1)
+Space: O(1)
 
 Explain briefly:
 
-### Edge Cases Checked
+Dictionary lookups are performed in constant time on average.
 
-- [ ] Known alias
-- [ ] Unknown alias
-- [ ] Empty dictionary
-
----
-
-# Assistance & Sources
-
-## AI Used?
-
-- [ ] Yes
-- [ ] No
-
-## If yes, what did AI help with?
-
-Write 1–3 bullets.
-
--
--
--
-
-## Other Sources
-
-List any non-course sources you used. If none, write `None`.
+Edge Cases Checked
+ Known alias
+ Unknown alias
+ Empty dictionary
+Assistance & Sources
+AI Used?
+ Yes
+ No
+If yes, what did AI help with?
+Helped explain data structure concepts.
+Helped review time and space complexity.
+Helped improve README formatting and wording.
+Other Sources
+Course notes and lecture materials.
+Python Documentation.
+No other outside sources used.
