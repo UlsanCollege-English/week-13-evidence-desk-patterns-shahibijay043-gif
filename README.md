@@ -1,14 +1,11 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/cm6PS4yt)
 # Week 1 Homework: Evidence Desk Patterns
-
-## Student Name
-## Student Name
+ Student Name
 
 Shahi Bijay
 
 ## Summary
-
-This homework focuses on solving common data structure problems using Python. I practiced counting repeated values with dictionaries, detecting duplicates using sets, validating balanced brackets using a stack, and performing fast lookups with dictionaries. The assignment also helped me understand problem-solving patterns, time complexity, and space complexity. In addition, I learned how different data structures are used in real-world scenarios such as evidence tracking and suspect identification.
+This homework focuses on the implementation of fundamental data structures to solve algorithmic challenges typical of technical interviews and high-performance data processing. The tasks emphasize:Frequency Analysis: Utilizing hash maps for $O(N)$ counting.Set Theory: Implementing $O(1)$ membership tests for duplicate detection.Linear Structures: Managing Last-In, First-Out (Stack) and First-In, First-Out (Queue) processing.Computational Efficiency: Prioritizing time and space complexity ($Big-O$) to ensure scalability.
 
 ## How to Run Tests
 
@@ -152,5 +149,4 @@ Helped review Python syntax and function structure.
 Helped improve README formatting and documentation.
 Other Sources
 Course notes and lecture materials.
-Python Documentation: https://docs.python.org/3/
 GitHub Classroom assignment instructions.

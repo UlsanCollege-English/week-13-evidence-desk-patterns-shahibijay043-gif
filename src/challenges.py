@@ -9,111 +9,69 @@ Rules:
 - Run tests with: pytest -q
 """
 
-from collections import deque
+"""Week 1 Homework: Evidence Desk Patterns.
+
+Expert implementation using optimized Python 3.11+ patterns.
+"""
+
+from collections import deque, Counter
+from itertools import pairwise
 
 
 def count_evidence(evidence: list[str]) -> dict[str, int]:
-    """Return a dictionary counting how many times each evidence label appears."""
-
-    frequency_map: dict[str, int] = {}
-
-    for evidence_label in evidence:
-        frequency_map[evidence_label] = (
-            frequency_map.get(evidence_label, 0) + 1
-        )
-
-    return frequency_map
+    """Pattern: Frequency counting. Data Structure: Dictionary/Counter."""
+    # Counter is the professional standard for frequency mapping.
+    return dict(Counter(evidence))
 
 
 def first_repeated_id(ids: list[str]) -> str | None:
-    """Return the first suspect ID that appears a second time."""
-
+    """Pattern: Seen before. Data Structure: Set."""
     seen_ids: set[str] = set()
-
     for suspect_id in ids:
-
         if suspect_id in seen_ids:
             return suspect_id
-
         seen_ids.add(suspect_id)
-
     return None
 
 
 def valid_tags(tags: str) -> bool:
-    """Return True if all bracket-style evidence tags are balanced."""
-
+    """Pattern: Stack matching. Data Structure: List as Stack."""
     stack: list[str] = []
+    pairs = {")": "(", "]": "[", "}": "{"}
+    opening = set(pairs.values())
 
-    bracket_pairs = {
-        ")": "(",
-        "]": "[",
-        "}": "{",
-    }
-
-    opening_brackets = {"(", "[", "{"}
-
-    for character in tags:
-
-        if character in opening_brackets:
-            stack.append(character)
-
-        elif character in bracket_pairs:
-
-            if not stack:
+    for char in tags:
+        if char in opening:
+            stack.append(char)
+        elif char in pairs:
+            # Pop and validate in a single logic gate
+            if not stack or stack.pop() != pairs[char]:
                 return False
-
-            top_bracket = stack.pop()
-
-            if top_bracket != bracket_pairs[character]:
-                return False
-
-    return len(stack) == 0
+    return not stack
 
 
-def lookup_alias(
-    aliases: dict[str, str],
-    alias: str,
-) -> str | None:
-    """Return the real name connected to an alias."""
-
+def lookup_alias(aliases: dict[str, str], alias: str) -> str | None:
+    """Pattern: Lookup table. Data Structure: Dictionary."""
     return aliases.get(alias)
 
 
 def process_reports(reports: list[str]) -> list[str]:
-    """Return case reports in first-in, first-out processing order."""
-
-    report_queue: deque[str] = deque(reports)
-
-    processed_reports: list[str] = []
-
+    """Pattern: Queue processing. Data Structure: deque."""
+    # Deque is used because popleft() is O(1), whereas list.pop(0) is O(n).
+    report_queue = deque(reports)
+    processed_reports = []
     while report_queue:
-        processed_reports.append(
-            report_queue.popleft()
-        )
-
+        processed_reports.append(report_queue.popleft())
     return processed_reports
 
 
 def largest_time_gap(times: list[int]) -> int:
-    """Return the largest gap between neighboring event times after sorting."""
-
+    """Pattern: Sorting + Scan. Data Structure: List."""
     if len(times) < 2:
         return 0
 
+    # sorted() ensures the original input is not mutated.
     sorted_times = sorted(times)
-
-    largest_gap = 0
-
-    previous_time = sorted_times[0]
-
-    for current_time in sorted_times[1:]:
-
-        current_gap = current_time - previous_time
-
-        if current_gap > largest_gap:
-            largest_gap = current_gap
-
-        previous_time = current_time
-
-    return largest_gap
+    
+    # pairwise(sorted_times) yields (a, b), (b, c)... for an elegant O(n) scan.
+    return max(after - before for before, after in pairwise(sorted_times))
