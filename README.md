@@ -2,36 +2,62 @@
 # Week 1 Homework: Evidence Desk Patterns
 
 ## Student Name
-Student Name
+## Student Name
 
 Shahi Bijay
-Student ID: 2412083
 
-Summary
+## Summary
 
-In this homework, I practiced several important data structure patterns in Python. I used a dictionary for frequency counting in the evidence counter problem and a set to detect repeated suspect IDs efficiently. I also used a list as a stack to validate balanced evidence tags and a dictionary as a lookup table to find real names from aliases. While completing these problems, I learned how different data structures can solve specific tasks more effectively. This assignment also helped me improve my understanding of time and space complexity, testing, and handling edge cases.
+This homework focuses on solving common data structure problems using Python. I practiced counting repeated values with dictionaries, detecting duplicates using sets, validating balanced brackets using a stack, and performing fast lookups with dictionaries. The assignment also helped me understand problem-solving patterns, time complexity, and space complexity. In addition, I learned how different data structures are used in real-world scenarios such as evidence tracking and suspect identification.
+
+## How to Run Tests
+
+From the repository root, run:
+
+```bash
+pytest -q
+
+To run one test file:
+
+pytest -q tests/test_challenges.py
+Required Problems
+
+Complete these functions in src/challenges.py:
+
+count_evidence
+first_repeated_id
+valid_tags
+lookup_alias
+Optional Challenges
+
+These are extra practice unless your instructor tells you otherwise:
+
+process_reports
+largest_time_gap
+
+Optional tests are skipped by default. To run them, remove the @pytest.mark.skip(...) line above the optional test you want to check.
 
 Problem Notes
-1.  Evidence Counter
+1. Evidence Counter
 Pattern
 
 Frequency Counting
 
 Data Structure
 
-Dictionary
+Dictionary (dict)
 
 Approach
 Step 1: Create an empty dictionary.
-Step 2: Loop through each evidence label.
-Step 3: Count how many times each label appears and store the result.
+Step 2: Loop through each evidence item.
+Step 3: Update the count for each item and return the completed dictionary.
 Complexity
 Time: O(n)
 Space: O(n)
 
 Explain briefly:
 
-I visit each evidence item once and store counts in a dictionary. The dictionary may store up to all unique items.
+The function visits each evidence item once. In the worst case, every item is unique and must be stored in the dictionary.
 
 Edge Cases Checked
  Empty list
@@ -45,19 +71,19 @@ Seen Before
 
 Data Structure
 
-Set
+Set (set)
 
 Approach
-Step 1: Create an empty set called seen.
-Step 2: Loop through each suspect ID.
-Step 3: Return the ID when it appears a second time.
+Step 1: Create an empty set to store seen IDs.
+Step 2: Loop through each ID in the list.
+Step 3: Return the first ID already in the set; otherwise add it and continue.
 Complexity
 Time: O(n)
 Space: O(n)
 
 Explain briefly:
 
-The set provides fast membership checking, allowing repeated IDs to be detected efficiently.
+Each ID is checked and added to the set at most once. Set lookups are generally constant time.
 
 Edge Cases Checked
  Empty list
@@ -71,19 +97,19 @@ Stack Matching
 
 Data Structure
 
-List (used as a Stack)
+List used as a Stack
 
 Approach
-Step 1: Create an empty stack.
+Step 1: Create an empty stack and bracket mapping dictionary.
 Step 2: Push opening brackets onto the stack.
-Step 3: Match closing brackets with the most recent opening bracket.
+Step 3: Verify each closing bracket matches the most recent opening bracket.
 Complexity
 Time: O(n)
 Space: O(n)
 
 Explain briefly:
 
-Each character is processed once. The stack stores unmatched opening brackets.
+The function scans the string once. In the worst case, all opening brackets are stored in the stack.
 
 Edge Cases Checked
  Empty string
@@ -99,18 +125,18 @@ Lookup Table
 
 Data Structure
 
-Dictionary
+Dictionary (dict)
 
 Approach
-Step 1: Check whether the alias exists in the dictionary.
-Step 2: Return the corresponding real name or None.
+Step 1: Search for the alias in the dictionary.
+Step 2: Return the real name if found; otherwise return None.
 Complexity
 Time: O(1)
 Space: O(1)
 
 Explain briefly:
 
-Dictionary lookups are performed in constant time on average.
+Dictionary lookups are typically constant time and do not require additional memory.
 
 Edge Cases Checked
  Known alias
@@ -121,10 +147,10 @@ AI Used?
  Yes
  No
 If yes, what did AI help with?
-Helped explain data structure concepts.
-Helped review time and space complexity.
-Helped improve README formatting and wording.
+Helped explain data structure patterns and complexity analysis.
+Helped review Python syntax and function structure.
+Helped improve README formatting and documentation.
 Other Sources
 Course notes and lecture materials.
-Python Documentation.
-No other outside sources used.
+Python Documentation: https://docs.python.org/3/
+GitHub Classroom assignment instructions.
