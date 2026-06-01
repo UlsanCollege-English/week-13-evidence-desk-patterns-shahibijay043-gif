@@ -149,4 +149,5 @@ Helped review Python syntax and function structure.
 Helped improve README formatting and documentation.
 Other Sources
 Course notes and lecture materials.
+Python Documentation: https://docs.python.org/3/
 GitHub Classroom assignment instructions.
