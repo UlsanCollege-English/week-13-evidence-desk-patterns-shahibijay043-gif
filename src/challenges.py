@@ -8,7 +8,6 @@ Rules:
 - Do not change function names or parameters
 - Run tests with: pytest -q
 """
-
 from collections import deque
 
 
@@ -29,6 +28,7 @@ def first_repeated_id(ids: list[str]) -> str | None:
     seen_ids: set[str] = set()
 
     for suspect_id in ids:
+
         if suspect_id in seen_ids:
             return suspect_id
 
@@ -79,6 +79,7 @@ def process_reports(reports: list[str]) -> list[str]:
     """Return case reports in first-in, first-out processing order."""
 
     report_queue: deque[str] = deque(reports)
+
     processed_reports: list[str] = []
 
     while report_queue:
@@ -94,10 +95,15 @@ def largest_time_gap(times: list[int]) -> int:
         return 0
 
     sorted_times = sorted(times)
+
     largest_gap = 0
 
     for index in range(1, len(sorted_times)):
-        current_gap = sorted_times[index] - sorted_times[index - 1]
+
+        current_gap = (
+            sorted_times[index]
+            - sorted_times[index - 1]
+        )
 
         if current_gap > largest_gap:
             largest_gap = current_gap
