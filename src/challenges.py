@@ -15,14 +15,12 @@ from collections import deque
 def count_evidence(evidence: list[str]) -> dict[str, int]:
     """Return a dictionary counting how many times each evidence label appears."""
 
-    frequency_map: dict[str, int] = {}
+    evidence_counts: dict[str, int] = {}
 
-    for evidence_label in evidence:
-        frequency_map[evidence_label] = (
-            frequency_map.get(evidence_label, 0) + 1
-        )
+    for label in evidence:
+        evidence_counts[label] = evidence_counts.get(label, 0) + 1
 
-    return frequency_map
+    return evidence_counts
 
 
 def first_repeated_id(ids: list[str]) -> str | None:
@@ -31,7 +29,6 @@ def first_repeated_id(ids: list[str]) -> str | None:
     seen_ids: set[str] = set()
 
     for suspect_id in ids:
-
         if suspect_id in seen_ids:
             return suspect_id
 
@@ -45,7 +42,7 @@ def valid_tags(tags: str) -> bool:
 
     stack: list[str] = []
 
-    bracket_pairs = {
+    matching_brackets = {
         ")": "(",
         "]": "[",
         "}": "{",
@@ -58,14 +55,12 @@ def valid_tags(tags: str) -> bool:
         if character in opening_brackets:
             stack.append(character)
 
-        elif character in bracket_pairs:
+        elif character in matching_brackets:
 
             if not stack:
                 return False
 
-            top_bracket = stack.pop()
-
-            if top_bracket != bracket_pairs[character]:
+            if stack.pop() != matching_brackets[character]:
                 return False
 
     return len(stack) == 0
@@ -84,13 +79,10 @@ def process_reports(reports: list[str]) -> list[str]:
     """Return case reports in first-in, first-out processing order."""
 
     report_queue: deque[str] = deque(reports)
-
     processed_reports: list[str] = []
 
     while report_queue:
-        processed_reports.append(
-            report_queue.popleft()
-        )
+        processed_reports.append(report_queue.popleft())
 
     return processed_reports
 
@@ -102,19 +94,12 @@ def largest_time_gap(times: list[int]) -> int:
         return 0
 
     sorted_times = sorted(times)
-
     largest_gap = 0
 
-    previous_time = sorted_times[0]
-
-    for current_time in sorted_times[1:]:
-
-        current_gap = current_time - previous_time
+    for index in range(1, len(sorted_times)):
+        current_gap = sorted_times[index] - sorted_times[index - 1]
 
         if current_gap > largest_gap:
             largest_gap = current_gap
 
-        previous_time = current_time
-
     return largest_gap
-
