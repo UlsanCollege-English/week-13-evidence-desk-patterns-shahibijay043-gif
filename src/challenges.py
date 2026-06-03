@@ -1,37 +1,29 @@
-"""Week 1 Homework: Evidence Desk Patterns.
-
-Complete each function using the data structure pattern named in the docstring.
-
-Rules:
-- Python 3.11+
-- Standard library only
-- Do not change function names or parameters
-- Run tests with: pytest -q
-"""
+"""Week 1 Homework: Evidence Desk Patterns."""
 
 from collections import deque
+
+
 def count_evidence(evidence: list[str]) -> dict[str, int]:
     """Return a dictionary counting how many times each evidence label appears."""
 
-    evidence_counts: dict[str, int] = {}
+    counts: dict[str, int] = {}
 
-    for label in evidence:
-        evidence_counts[label] = evidence_counts.get(label, 0) + 1
+    for item in evidence:
+        counts[item] = counts.get(item, 0) + 1
 
-    return evidence_counts
+    return counts
 
 
 def first_repeated_id(ids: list[str]) -> str | None:
     """Return the first suspect ID that appears a second time."""
 
-    seen_ids: set[str] = set()
+    seen: set[str] = set()
 
     for suspect_id in ids:
-
-        if suspect_id in seen_ids:
+        if suspect_id in seen:
             return suspect_id
 
-        seen_ids.add(suspect_id)
+        seen.add(suspect_id)
 
     return None
 
@@ -41,28 +33,28 @@ def valid_tags(tags: str) -> bool:
 
     stack: list[str] = []
 
-    matching_brackets = {
+    pairs = {
         ")": "(",
         "]": "[",
         "}": "{",
     }
 
-    opening_brackets = {"(", "[", "{"}
+    openings = {"(", "[", "{"}
 
-    for character in tags:
+    for char in tags:
 
-        if character in opening_brackets:
-            stack.append(character)
+        if char in openings:
+            stack.append(char)
 
-        elif character in matching_brackets:
+        elif char in pairs:
 
             if not stack:
                 return False
 
-            if stack.pop() != matching_brackets[character]:
+            if stack.pop() != pairs[char]:
                 return False
 
-    return len(stack) == 0
+    return not stack
 
 
 def lookup_alias(
@@ -77,14 +69,13 @@ def lookup_alias(
 def process_reports(reports: list[str]) -> list[str]:
     """Return case reports in first-in, first-out processing order."""
 
-    report_queue: deque[str] = deque(reports)
+    queue = deque(reports)
+    processed: list[str] = []
 
-    processed_reports: list[str] = []
+    while queue:
+        processed.append(queue.popleft())
 
-    while report_queue:
-        processed_reports.append(report_queue.popleft())
-
-    return processed_reports
+    return processed
 
 
 def largest_time_gap(times: list[int]) -> int:
@@ -97,14 +88,10 @@ def largest_time_gap(times: list[int]) -> int:
 
     largest_gap = 0
 
-    for index in range(1, len(sorted_times)):
+    for i in range(1, len(sorted_times)):
+        gap = sorted_times[i] - sorted_times[i - 1]
 
-        current_gap = (
-            sorted_times[index]
-            - sorted_times[index - 1]
-        )
-
-        if current_gap > largest_gap:
-            largest_gap = current_gap
+        if gap > largest_gap:
+            largest_gap = gap
 
     return largest_gap
