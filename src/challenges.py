@@ -8,9 +8,8 @@ Rules:
 - Do not change function names or parameters
 - Run tests with: pytest -q
 """
+
 from collections import deque
-
-
 def count_evidence(evidence: list[str]) -> dict[str, int]:
     """Return a dictionary counting how many times each evidence label appears."""
 
