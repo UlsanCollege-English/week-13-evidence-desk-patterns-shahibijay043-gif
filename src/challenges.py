@@ -2,7 +2,7 @@ from collections import deque
 
 
 def count_evidence(evidence: list[str]) -> dict[str, int]:
-    counts = {}
+    counts: dict[str, int] = {}
 
     for item in evidence:
         counts[item] = counts.get(item, 0) + 1
@@ -11,7 +11,7 @@ def count_evidence(evidence: list[str]) -> dict[str, int]:
 
 
 def first_repeated_id(ids: list[str]) -> str | None:
-    seen = set()
+    seen: set[str] = set()
 
     for suspect_id in ids:
         if suspect_id in seen:
@@ -23,7 +23,7 @@ def first_repeated_id(ids: list[str]) -> str | None:
 
 
 def valid_tags(tags: str) -> bool:
-    stack = []
+    stack: list[str] = []
 
     pairs = {
         ")": "(",
@@ -54,7 +54,7 @@ def lookup_alias(
 
 def process_reports(reports: list[str]) -> list[str]:
     queue = deque(reports)
-    processed = []
+    processed: list[str] = []
 
     while queue:
         processed.append(queue.popleft())
@@ -69,8 +69,8 @@ def largest_time_gap(times: list[int]) -> int:
     sorted_times = sorted(times)
     largest_gap = 0
 
-    for i in range(1, len(sorted_times)):
-        gap = sorted_times[i] - sorted_times[i - 1]
+    for index in range(1, len(sorted_times)):
+        gap = sorted_times[index] - sorted_times[index - 1]
 
         if gap > largest_gap:
             largest_gap = gap
